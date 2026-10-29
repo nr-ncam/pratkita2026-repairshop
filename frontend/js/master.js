@@ -10,7 +10,7 @@ async function loadInventory() {
     const list = document.getElementById("inventory-list");
     list.innerHTML = parts.map(p => `
         <li class="list-group-item d-flex justify-content-between">
-            <span>${p.name}</span>
+            <span>${p.id}. ${p.name}</span>
             <span class="badge bg-success">${p.quantity} шт.</span>
         </li>
     `).join("");
