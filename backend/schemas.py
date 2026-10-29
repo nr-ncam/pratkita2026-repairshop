@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from models import UserRole
+from typing import List, Optional
 
 # --- USER SCHEMAS ---
 class UserCreate(BaseModel):
@@ -16,6 +17,11 @@ class UserRead(BaseModel):
     full_name: str
     phone: str
     role: UserRole
+
+class UserUpdate(BaseModel):
+    full_name: Optional[str] = None
+    phone: Optional[str] = None
+    password: Optional[str] = None
 
 class UserLogin(BaseModel):
     email: EmailStr
@@ -42,7 +48,6 @@ class ServiceCreate(BaseModel):
 class ServiceRead(ServiceCreate):
     id: int
 
-# --- REPAIR REQUEST SCHEMAS ---
 class RequestRead(BaseModel):
     id: int
     device_type: str
@@ -52,9 +57,8 @@ class RequestRead(BaseModel):
     created_at: datetime
     service_id: int
     client_id: int
-    
-    # We will manually add the service name in the route for a nicer UI
     service_name: Optional[str] = None 
+    comments: List[CommentRead] = [] # <--- ДОБАВЛЕНО
 
 # Append to backend/schemas.py
 from typing import List

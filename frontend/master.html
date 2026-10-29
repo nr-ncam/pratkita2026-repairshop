@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кабинет Мастера</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Панель Мастера</a>
+            <button class="btn btn-outline-light" onclick="logout()">Выйти</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <!-- My Requests -->
+            <div class="col-md-8">
+                <h3 class="mb-3">Мои заявки в работе</h3>
+                <div id="my-requests"></div>
+            </div>
+            
+            <!-- Warehouse -->
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Склад запчастей</h5>
+                    </div>
+                    <ul class="list-group list-group-flush" id="inventory-list">
+                        <!-- populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/master.js"></script>
+</body>
+</html>

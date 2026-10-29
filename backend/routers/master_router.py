@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import List
-from datetime import datetime
+from datetime import datetime, timezone
 
 from database import get_session
 from models import RepairRequest, User, UserRole, RequestStatus, Comment, Inventory, RequestPart
@@ -34,7 +34,7 @@ def update_status(
         raise HTTPException(403, "Not found or not assigned to you")
         
     req.status = status_data.status
-    req.updated_at = datetime.utcnow()
+    req.updated_at = datetime.now(timezone.utc) 
     session.add(req)
     session.commit()
     return {"message": "Status updated successfully", "new_status": req.status}

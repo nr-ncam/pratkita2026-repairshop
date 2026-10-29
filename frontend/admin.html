@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель Администратора</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Панель Управления</a>
+            <button class="btn btn-outline-light" onclick="logout()">Выйти</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Stats -->
+        <div class="row mb-4" id="stats-container">
+            <!-- populated by JS -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Все заявки</h4>
+                <div id="all-requests"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-3 shadow">
+                    <div class="card-header bg-success text-white">Добавить услугу</div>
+                    <div class="card-body">
+                        <form id="service-form">
+                            <input type="text" id="s-name" class="form-control mb-2" placeholder="Название" required>
+                            <input type="number" id="s-price" class="form-control mb-2" placeholder="Цена" required>
+                            <button class="btn btn-success w-100">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header bg-warning text-dark">Добавить на склад</div>
+                    <div class="card-body">
+                        <form id="inventory-form">
+                            <input type="text" id="i-name" class="form-control mb-2" placeholder="Название детали" required>
+                            <input type="number" id="i-qty" class="form-control mb-2" placeholder="Кол-во" required>
+                            <input type="number" id="i-price" class="form-control mb-2" placeholder="Цена" required>
+                            <button class="btn btn-warning w-100">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">Управление пользователями</h5>
+            </div>
+            <div class="card-body" id="users-list">
+                <!-- populated by JS -->
+            </div>
+        </div>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

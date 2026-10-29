@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ремонтная Мастерская - Вход</title>
+    <!-- Using Bootstrap for quick styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4>Ремонтная Мастерская</h4>
+                    </div>
+                    <div class="card-body">
+                        
+                        <!-- Login Form -->
+                        <div id="login-section">
+                            <h5 class="mb-3">Вход</h5>
+                            <form id="login-form">
+                                <div class="mb-3">
+                                    <label>Email</label>
+                                    <input type="email" id="login-email" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Пароль</label>
+                                    <input type="password" id="login-password" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Войти</button>
+                            </form>
+                            <p class="text-center mt-3 mb-0">
+                                Нет аккаунта? <a href="#" onclick="toggleForms()">Зарегистрироваться</a>
+                            </p>
+                        </div>
+
+                        <!-- Registration Form (Hidden by default) -->
+                        <div id="register-section" style="display: none;">
+                            <h5 class="mb-3">Регистрация (Клиент)</h5>
+                            <form id="register-form">
+                                <div class="mb-2">
+                                    <label>ФИО</label>
+                                    <input type="text" id="reg-name" class="form-control" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label>Email</label>
+                                    <input type="email" id="reg-email" class="form-control" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label>Телефон</label>
+                                    <input type="text" id="reg-phone" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Пароль</label>
+                                    <input type="password" id="reg-password" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Создать аккаунт</button>
+                            </form>
+                            <p class="text-center mt-3 mb-0">
+                                Уже есть аккаунт? <a href="#" onclick="toggleForms()">Войти</a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to our JS -->
+    <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -4,8 +4,8 @@ from typing import List, Optional
 import shutil, os, uuid
 
 from database import get_session
-from models import RepairRequest, Service, UserRole, RequestStatus, User
-from schemas import RequestRead
+from models import RepairRequest, Service, UserRole, RequestStatus, User, Comment # Добавили Comment
+from schemas import RequestRead, CommentRead # Добавили CommentRead
 from auth import RoleChecker
 
 router = APIRouter(prefix="/api/requests", tags=["Repair Requests"])
@@ -67,19 +67,20 @@ def get_my_requests(
     session: Session = Depends(get_session),
     current_user: User = Depends(require_client)
 ):
-    """Client endpoint to view their request history and current statuses."""
-    
-    # Get requests for the current user
     requests = session.exec(select(RepairRequest).where(RepairRequest.client_id == current_user.id)).all()
     
-    # Format the output to include the service name for the frontend
     result = []
     for req in requests:
         service = session.get(Service, req.service_id)
+        
+        # ИСПРАВЛЕНИЕ: Подтягиваем комментарии мастера к заявке
+        comments = session.exec(select(Comment).where(Comment.request_id == req.id)).all()
+        comments_data = [CommentRead.model_validate(c) for c in comments] # или .model_dump()
+
         req_dict = req.model_dump()
         req_dict["service_name"] = service.name if service else "Unknown"
+        req_dict["comments"] = comments_data # <--- ДОБАВЛЕНО
         
-        # We need to adjust the photo path to be accessible via the web URL
         if req.photo_path:
              req_dict["photo_path"] = f"/{req.photo_path}"
              

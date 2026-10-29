@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет - Клиент</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ремонтная Мастерская</a>
+            <div class="d-flex">
+                <button class="btn btn-outline-light" onclick="logout()">Выйти</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <!-- Left Column: Create Request & Catalog -->
+            <div class="col-md-5">
+                <!-- Create Request Form -->
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Создать заявку на ремонт</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="request-form" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Услуга</label>
+                                <select id="service-select" class="form-select" required>
+                                    <option value="">Загрузка услуг...</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Тип устройства</label>
+                                <input type="text" id="device-type" class="form-control" placeholder="Например: Ноутбук, Телефон" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Описание неисправности</label>
+                                <textarea id="description" class="form-control" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Фото (по желанию)</label>
+                                <input type="file" id="photo" class="form-control" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Отправить заявку</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Catalog (Prices) -->
+                <div class="card shadow">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Каталог услуг и цены</h5>
+                    </div>
+                    <ul class="list-group list-group-flush" id="catalog-list">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: My Requests -->
+            <div class="col-md-7">
+                <div class="card shadow">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">Мои заявки</h5>
+                    </div>
+                    <div class="card-body" id="requests-list">
+                        <!-- Populated by JS -->
+                        <p class="text-muted">У вас пока нет заявок.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/client.js"></script>
+</body>
+</html>

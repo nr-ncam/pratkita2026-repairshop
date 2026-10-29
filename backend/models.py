@@ -1,5 +1,5 @@
 from typing import Optional, List
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from sqlmodel import Field, SQLModel, Relationship
 
@@ -47,8 +47,8 @@ class RepairRequest(SQLModel, table=True):
     description: str
     photo_path: Optional[str] = None
     status: RequestStatus = Field(default=RequestStatus.ACCEPTED)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     
     # Foreign Keys
     client_id: int = Field(foreign_key="user.id")
@@ -63,7 +63,7 @@ class RepairRequest(SQLModel, table=True):
 class Comment(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     text: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     
     request_id: int = Field(foreign_key="repairrequest.id")
     author_id: int = Field(foreign_key="user.id")
